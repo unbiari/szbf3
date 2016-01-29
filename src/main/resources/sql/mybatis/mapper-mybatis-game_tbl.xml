@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Game_Tbl">
+
+	<cache />
+
+	<resultMap id="Game_TblResult" type="Game_Tbl">
+	</resultMap>
+	
+	<select id="listWithPage" parameterType="Game_Tbl" resultMap="Game_TblResult">
+		SELECT * FROM game_tbl limit #{start_Record} , #{page_Limit} ;
+	</select>
+	
+	<insert id="insert" parameterType="Game_Tbl">
+		INSERT INTO game_tbl ( room_Name, count_Grade, avg_Grade, master_ID, guest_ID,
+			master_WinFlag, master_Country, guest_Country, master_GetGold, guest_GetGold,
+			game_TimeLength, game_TurnTotal, winCount_Max, winCount_Now, game_History,
+			insert_Time, last_Time )
+		VALUES ( #{room_Name}, #{count_Grade}, #{avg_Grade}, #{master_ID}, #{guest_ID},
+			#{master_WinFlag}, #{master_Country}, #{guest_Country}, #{master_GetGold}, #{guest_GetGold},
+			#{game_TimeLength}, #{game_TurnTotal}, #{winCount_Max}, #{winCount_Now}, #{game_History},
+			now(), now() ) ;
+	</insert>
+
+	<update id="update" parameterType="Game_Tbl">
+		UPDATE game_tbl
+		SET
+			room_Name = #{room_Name},
+			count_Grade = #{count_Grade},
+			avg_Grade = #{avg_Grade},
+			master_ID = #{master_ID},
+			guest_ID = #{guest_ID},
+			master_WinFlag = #{master_WinFlag},
+			master_Country = #{master_Country},
+			guest_Country = #{guest_Country},
+			master_GetGold = #{master_GetGold},
+			guest_GetGold = #{guest_GetGold},
+			game_TimeLength = #{game_TimeLength},
+			game_TurnTotal = #{game_TurnTotal},
+			winCount_Max = #{winCount_Max},
+			winCount_Now = #{winCount_Now},
+			game_History = #{game_History},
+			last_Time = now()
+		WHERE
+			game_SeqNum = #{game_SeqNum} ;
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM game_tbl WHERE game_SeqNum = #{value} ;
+	</delete>	
+
+	<select id="getTotalRecords" resultType="int">
+		SELECT count(*) FROM game_tbl ;
+	</select>
+
+
+	<select id="listRecent" parameterType="Game_Tbl" resultMap="Game_TblResult">
+		SELECT * FROM game_tbl WHERE game_turntotal > 10 ORDER BY insert_time DESC LIMIT 0 , #{page_Limit} ;
+	</select>
+	
+	<select id="SearchLists" parameterType="Game_Tbl" resultMap="Game_TblResult">
+		SELECT * FROM game_tbl
+			WHERE room_Name=#{room_Name}
+			and master_ID=#{master_ID}
+			and guest_ID=#{guest_ID}
+			and master_WinFlag=#{master_WinFlag}
+			and master_Country=#{master_Country}
+			and guest_Country=#{guest_Country} ;
+	</select>
+	
+</mapper>

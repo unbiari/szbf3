@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/message/message-project_ko.properties=UTF-8
+encoding//src/main/resources/message/message-project_zh.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/views/client/login_jqm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/client/test.jsp=UTF-8

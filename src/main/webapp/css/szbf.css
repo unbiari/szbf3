@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+/*
+	Mark_From.style.backgroundColor = "red";
+	//Mark_From.style.display = "none";
+	Mark_From.style.width = "40px";
+	Mark_From.style.height = "40px";
+	Mark_From.style.margin = "-20px 0px 0px -20px";
+	Mark_From.style.position = "absolute";
+	Mark_From.style["z-index"] = "10";
+*/
+.mark_from {background-color:red; width:40px; height:40px; margin:-20px 0px 0px -20px; position:absolute; z-index:10;}
+
+/*
+		temp_mark_to.style.backgroundColor = "blue";
+		temp_mark_to.style.width = "40px";
+		temp_mark_to.style.height = "40px";
+		temp_mark_to.style.margin = "-20px 0px 0px -20px";
+		temp_mark_to.style.position = "absolute";
+		temp_mark_to.style["z-index"] = "10";
+		temp_mark_to.style.cursor = "pointer";
+*/
+.mark_to {background-color:blue; width:40px; height:40px; margin:-20px 0px 0px -20px; position:absolute; z-index:10; cursor:pointer;}
+
+/*
+	Next_Btn.style.top = "100px";
+	Next_Btn.style.width = "180px";
+	Next_Btn.style.height = "40px";
+	Next_Btn.style.margin = "-20px 0px 0px -40px";
+	Next_Btn.style.position = "absolute";
+	Next_Btn.style["z-index"] = 20;
+*/
+.next_btn {top:100px; width:180px; height:40px; margin:-20px 0px 0px -40px; position:absolute; z-index:20;}
+
+.time_tips{font-size: 0.84375em;color: white;background-color: #959595;width: 100%;line-height:2.667em;text-align: center;margin-top: 44px;margin-bottom: 0.444em}
+.time_tips span{color:#333;font-weight: bold;}

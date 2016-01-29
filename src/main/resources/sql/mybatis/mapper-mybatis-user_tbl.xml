@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User_Tbl">
+
+	<cache />
+
+	<resultMap id="User_TblResult" type="User_Tbl">
+	</resultMap>
+	
+	<select id="listWithPage" parameterType="User_Tbl" resultMap="User_TblResult">
+		SELECT * FROM user_tbl limit #{start_Record} , #{page_Limit} ;
+	</select>
+	
+<!-- 	<insert id="insert" parameterType="User_Tbl">
+		INSERT INTO user_tbl ( user_ID, user_PW, user_Level, user_Country, user_Email,
+			user_TelNum, count_Total, count_Win, count_Loss, count_MaxWin, count_NowWin, count_Over, 
+			gold_Total, gold_GetLast, tournament_Flag,
+			insert_Time, last_Time )
+		VALUES ( #{user_ID}, #{user_PW}, #{user_Level}, #{user_Country}, #{user_Email},
+			#{user_TelNum}, #{count_Total}, #{count_Win}, #{count_Loss}, #{count_MaxWin}, #{count_NowWin}, #{count_Over}, 
+			#{gold_Total}, #{gold_GetLast}, #{tournament_Flag},
+			now(), now() ) ;
+	</insert>
+ -->
+ 
+	<insert id="insert" parameterType="User_Tbl">
+		INSERT INTO user_tbl ( user_ID, user_PW, user_Level, user_Country, user_Email,
+			user_TelNum, count_Total, count_Win, count_Loss, count_MaxWin, count_NowWin, count_Over, 
+			gold_Total, gold_GetLast, tournament_Flag,
+			insert_Time, last_Time )
+		VALUES ( #{user_ID}, #{user_PW}, 1, #{user_Country}, #{user_Email},
+			#{user_TelNum}, 0, 0, 0, 0, 0, 0, 
+			#{gold_Total}, 0, 'N',
+			now(), now() ) ;
+	</insert>
+
+	<update id="update" parameterType="User_Tbl">
+		UPDATE user_tbl
+		SET
+			user_ID = #{user_ID},
+			user_PW = #{user_PW},
+			user_Level = #{user_Level},
+			user_Country = #{user_Country},
+			user_Email = #{user_Email},
+			user_TelNum = #{user_TelNum},
+			count_Total = #{count_Total},
+			count_Win = #{count_Win},
+			count_Loss = #{count_Loss},
+			count_MaxWin = #{count_MaxWin},
+			count_NowWin = #{count_NowWin},
+			count_Over = #{count_Over},
+			gold_Total = #{gold_Total},
+			gold_GetLast = #{gold_GetLast},
+			tournament_Flag = #{tournament_Flag},
+			last_Time = now()
+		WHERE
+			user_SeqNum = #{user_SeqNum} ;
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM user_tbl WHERE user_SeqNum = #{value} ;
+	</delete>	
+
+	<select id="getTotalRecords" resultType="int">
+		SELECT count(*) FROM user_tbl ;
+	</select>
+
+
+	<select id="checkUserID" parameterType="String" resultType="int">
+		SELECT count(*) FROM user_tbl WHERE user_ID = #{user_id} ;
+	</select>
+	<select id="getUserInfo" parameterType="String" resultType="User_Tbl">
+		SELECT * FROM user_tbl WHERE user_ID = #{user_id} ;
+	</select>
+	
+</mapper>

@@ -1,0 +1,278 @@
+/**
+ * LayoutCSS
+ * @author Eunok Kim (publisher@to-be.co.kr)
+ * @version0.1
+ * @date2014/03/01
+**/
+
+@charset "utf-8";
+
+@import url("../css/base.css");
+@import url("../css/custom.css");
+
+/*********************** Base Style ***********************/
+.ui-page-theme-z {background-color:#f1efeb !important;}
+.ui-page-theme-a {background-color:#fff !important;}
+.ui-page-theme-x {height:100% !important; background-color:#f1efeb !important;}
+.ui-content {padding:0;}
+
+.wrap_type1 {}
+.wrap_type2 {padding:0.5em;}
+.infomation_title {padding:0.3em; border-bottom:1px solid #ccc; text-align:center; color:#000; font-size:0.938em;}
+
+.blind {position:absolute; top:0; left:0; width:1px; height:1px; overflow:hidden; visibility:hidden;}
+.red {color:#e32213 !important;}
+
+.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head + body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {text-shadow:none;}
+
+.ui-page-theme-b .ui-btn, html .ui-bar-b .ui-btn, html .ui-body-b .ui-btn, html body .ui-group-theme-b .ui-btn, html head + body .ui-btn.ui-btn-b, .ui-page-theme-b .ui-btn:visited, html .ui-bar-b .ui-btn:visited, html .ui-body-b .ui-btn:visited, html body .ui-group-theme-b .ui-btn:visited, html head + body .ui-btn.ui-btn-b:visited {text-shadow:none !important;}
+
+/*********************** Header Style ***********************/
+/* Basic settings */
+.ui-li-static.ui-collapsible {padding:0;}
+
+.ui-li-static.ui-collapsible > .ui-collapsible-content > .ui-listview,
+.ui-li-static.ui-collapsible > .ui-collapsible-heading {margin:0;}
+
+.ui-li-static.ui-collapsible > .ui-collapsible-content {padding-top:0; padding-bottom:0; padding-right:0; border-bottom-width:0;}
+
+/* collapse vertical borders */
+.ui-li-static.ui-collapsible > .ui-collapsible-content > .ui-listview > li.ui-last-child,
+.ui-li-static.ui-collapsible.ui-collapsible-collapsed > .ui-collapsible-heading > a.ui-btn {
+border-bottom-width:0;}
+
+.ui-li-static.ui-collapsible > .ui-collapsible-content > .ui-listview > li.ui-first-child,
+.ui-li-static.ui-collapsible > .ui-collapsible-content > .ui-listview > li.ui-first-child > a.ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-heading > a.ui-btn {
+border-top-width:0;}
+
+/* Remove right borders */
+.ui-li-static.ui-collapsible > .ui-collapsible-heading > a.ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-content > .ui-listview > .ui-li-static,
+.ui-li-static.ui-collapsible > .ui-collapsible-content > .ui-listview > li > a.ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-content {
+border-right-width:0;}
+
+/* Remove left borders */
+/* Here, we need class ui-listview-outer to identify the outermost listview */
+.ui-listview-outer > .ui-li-static.ui-collapsible .ui-li-static.ui-collapsible.ui-collapsible,
+.ui-listview-outer > .ui-li-static.ui-collapsible > .ui-collapsible-heading > a.ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-content {border-left-width:0;}
+
+/* Custom Style */
+.ui-header-fixed, .ui-footer-fixed {border-color:#8c8c8c;}
+.ui-header.ui-bar-a {border:0 none; background-color:#333;}
+.ui-header.ui-bar-a .ui-title {line-height:1.2; font-size:1.250em; font-weight:bold; color:#fff;}
+
+/* page title */
+.page-title {padding:0.2em 0; border:none; text-align:center; background-color:#e32213;}
+.page-title h2.ui-title {font-weight:800; color:#fff;}
+.page-title .ui-link.ui-btn-v,
+.page-title .ui-link.ui-btn-v:hover,
+.page-title .ui-link.ui-btn-v:visited {background-color:#e32213;}
+.page-title .ui-btn-left {top:1em; left:1em; margin:-2px 0 0 -6px;}
+.page-title .ui-btn-right {top:1em; right:1em; margin:-2px -6px 0 0;}
+
+/*********************** List Style ***********************/
+.ui-content .ui-listview, .ui-panel-inner > .ui-listview {margin:0;}
+.ui-listview a, .ui-listview li{border-color:#ccc;}
+.ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after{background-color:inherit;}
+.ui-icon-plus, .ui-icon-minus{background-color:#f1efeb;}
+.ui-listview h2 + div{padding-left:0;}
+.ui-listview h2 + div li a{padding-left:2em;}
+
+.ui-content .ui-collapsible-set, .ui-panel-inner > .ui-collapsible-set {margin:0;}
+.ui-collapsible-set a, .ui-collapsible-set li{border-color:#ccc;}
+.ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after{background-color:inherit;}
+.ui-icon-plus, .ui-icon-minus{background-color:#f1efeb;}
+.ui-collapsible-set h2 + div{padding-left:0;}
+.ui-collapsible-set h2 + div li a{padding-left:2em;}
+
+.ui-listview.ui-group-theme-a {margin:0;}
+.ui-listview.ui-group-theme-a > li > a {border:0 none;}
+.ui-listview.ui-group-theme-a a {display:block; color:inherit !important;}
+.ui-listview.ui-group-theme-a li > h2 > a:hover {background-color:#f6f6f6 !important;}
+.ui-listview.ui-group-theme-a li > h2 > a:active {text-shadow:0 none  !important;}
+.ui-listview.ui-group-theme-a > li > a:before,
+.ui-listview.ui-group-theme-a > li > a:after {display:none;}
+.ui-listview.ui-group-theme-a > .ui-li-divider {padding:0.7em 1em; border-top:none; border-bottom:none; font-size:1em;}
+.ui-listview.ui-group-theme-a .ui-collapsible-heading {border-top:none; font-size:1em;}
+.ui-listview.ui-group-theme-a .ui-collapsible-heading a {padding:0.7em 1em;}
+.ui-listview.ui-group-theme-a .ui-collapsible-heading a:before,
+.ui-listview.ui-group-theme-a .ui-collapsible-heading a:after {display:none;}
+
+
+.ui-collapsible-set.ui-group-theme-a {margin:0;}
+.ui-collapsible-set.ui-group-theme-a > li {margin:0 !important;}
+.ui-collapsible-set.ui-group-theme-a > li > a {border:0 none; background-color:#fff !important;}
+.ui-collapsible-set.ui-group-theme-a a {display:block; color:inherit !important; font-size:1em !important;}
+.ui-collapsible-set.ui-group-theme-a li > h2 a {padding:1em !important; border:0 none !important; border-top:1px solid #ccc !important; background-color:#fff !important; color:#000 !important;}
+.ui-collapsible-set.ui-group-theme-a li.ui-last-child > h2 a {border-bottom:1px solid #ccc !important;}
+.ui-collapsible-set.ui-group-theme-a li > h2 > a:hover {background-color:#f6f6f6 !important;}
+.ui-collapsible-set.ui-group-theme-a li > h2 > a:active {text-shadow:0 none  !important;}
+.ui-collapsible-set.ui-group-theme-a li .ui-collapsible-content {background-color:#ddd; padding:0 !important;}
+.ui-collapsible-set.ui-group-theme-a li .ui-collapsible-content a {padding:0.5em 0 !important;}
+.ui-collapsible-set.ui-group-theme-a > li > a:before,
+.ui-collapsible-set.ui-group-theme-a > li > a:after {display:none;}
+.ui-collapsible-set.ui-group-theme-a > .ui-li-divider {padding:1.2em 1em; border-top:1px solid #ccc; color:#000 !important; border-bottom:none; font-size:1em;}
+.ui-collapsible-set.ui-group-theme-a .ui-collapsible-heading {border-top:none; font-size:1em;}
+.ui-collapsible-set.ui-group-theme-a .ui-collapsible-heading a {padding:0.7em 1em;}
+.ui-collapsible-set.ui-group-theme-a .ui-collapsible-heading a:before,
+.ui-collapsible-set.ui-group-theme-a .ui-collapsible-heading a:after {display:none;}
+
+.ui-listview.ui-group-theme-b {margin:0;}
+.ui-listview.ui-group-theme-b > li > a {border:0 none;}
+.ui-listview.ui-group-theme-b > li {border-bottom:1px solid #ccc !important;}
+.ui-listview.ui-group-theme-b a {display:block; color:inherit !important; background-color:#fff !important;}
+.ui-listview.ui-group-theme-b > li > a:before,
+.ui-listview.ui-group-theme-b > li > a:after {display:none;}
+
+
+/*********************** Tab Style ***********************/
+.ui-tabs {padding:0;}
+.ui-tabs .ui-navbar li .ui-btn {position:relative; padding:10px 0; border:1px solid #ccc; border-left:none; font-size:0.725em; color:#666; background-color:#ddd;}
+.ui-tabs .ui-navbar li .ui-btn:first-child {border-left:none;}
+.ui-tabs .ui-navbar li.ui-tabs-active .ui-btn {padding:11px 0; color:#fff; border:none; background-color:#e32213;}
+.ui-tabs .ui-navbar li.ui-tabs-active .ui-btn:before {content:''; position:absolute; bottom:0; left:50%; display:block; width:0; height:0; margin:0 0 0 -3px; border-width:6px; border-style:solid; border-color:transparent transparent #f1efeb transparent;}
+.ui-tabs .ui-tabs-panel {padding:0;}
+
+.tabtype2.ui-tabs .ui-navbar li.ui-tabs-active .ui-btn {background-color:#333;}
+
+/*********************** Button Style ***********************/
+/* 헤더 컨트롤러 버튼 */
+.ui-btn-v {border:none; background:none; width:22px; height:22px;}
+.ui-btn-v.ui-btn-icon-left:after, 
+.ui-btn-v.ui-btn-icon-right:after, 
+.ui-btn-v.ui-btn-icon-top:after, 
+.ui-btn-v.ui-btn-icon-bottom:after, 
+.ui-btn-v.ui-btn-icon-notext:after {width:100%; height:100%; border-radius:0; background-color:transparent; background-size:100% 100%;}
+
+.ui-btn-v.ui-btn-icon-notext:after, 
+.ui-btn-v.ui-btn-icon-top:after, 
+.ui-btn-v.ui-btn-icon-bottom:after {margin-left:-11px;}
+
+.ui-btn-v.ui-btn-icon-notext:after, 
+.ui-btn-v.ui-btn-icon-left:after, 
+.ui-btn-v.ui-btn-icon-right:after {margin-top:-11px;}
+
+/* 버튼 */
+.ui-btn-a {padding:0.5em; border:2px solid #e32213 !important; font-size:14px; font-weight:normal; color:#fff !important; background-color:#e32213 !important; text-shadow:none !important; font-weight:normal !important;}
+.ui-btn-b {padding:0.5em; border:2px solid #999 !important; font-size:14px; font-weight:normal; color:#999 !important; background-color:#fff !important; text-shadow:none !important; font-weight:normal !important;}
+.ui-btn-c {padding:0.5em; border:2px solid #848484 !important; font-size:14px; font-weight:normal; color:#fff !important; background-color:#848484 !important; text-shadow:none !important; font-weight:normal !important;}
+
+.ui-btn-a.ui-btn-active,
+.ui-btn-a.ui-focus,
+.ui-btn-b.ui-btn-active,
+.ui-btn-b.ui-focus,
+.ui-btn-c.ui-btn-active,
+.ui-btn-c.ui-focus,
+.ui-btn-a:hover,
+.ui-btn-a:active,
+.ui-btn-b:hover,
+.ui-btn-b:active,
+.ui-btn-c:hover,
+.ui-btn-c:active,
+.ui-btn:hover,
+.ui-btn:active,
+.ui-btn.ui-btn-active,
+.ui-btn.ui-focus,
+a:hover, a:focus,
+a:active,
+a.ui-btn-active,
+a.ui-focus {opacity:0.8 !important;}
+
+.ui-btn-a.ui-mini,
+.ui-btn-b.ui-mini,
+.ui-btn-c.ui-mini {padding:0.3em; font-size:13px;}
+
+.ui-btn-u.ui-icon-close {border:0 none; border-radius:0 !important; display: inline-block; height: 27px !important; margin: 0 !important; min-width: 27px !important; padding: 0 !important; position: absolute; right:2px !important; text-indent: -9999em; top:2px !important; width: 27px !important; background-color:transparent !important}
+.ui-btn-u.ui-icon-close:before {content:''; position:absolute; top:50%; left:50%; display:block; width:2px; height:20px; margin:-10px 0 0 -1px; background-color:#b6b6b6; transform:rotate(45deg); -webkit-transform:rotate(45deg); -moz-transform:rotate(45deg); -ms-transform:rotate(45deg);}
+.ui-btn-u.ui-icon-close:after {content:''; position:absolute; top:50%; left:50%; display:block; width:20px; height:2px; margin:-1px 0 0 -10px; background-color:#b6b6b6; transform:rotate(45deg); -webkit-transform:rotate(45deg); -moz-transform:rotate(45deg); -ms-transform:rotate(45deg);}
+
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head + body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head + body .ui-btn.ui-btn-a:visited {text-shadow:none !important;}
+.ui-page-theme-b .ui-btn:focus, html .ui-bar-b .ui-btn:focus, html .ui-body-b .ui-btn:focus, html body .ui-group-theme-b .ui-btn:focus, html head + body .ui-btn.ui-btn-b:focus, .ui-page-theme-b .ui-focus, html .ui-bar-b .ui-focus, 
+html .ui-body-b .ui-focus, 
+html body .ui-group-theme-b .ui-focus, 
+html head + body .ui-btn-b.ui-focus, 
+html head + body .ui-body-b.ui-focus,
+.ui-page-theme-a .ui-btn:focus, 
+html .ui-bar-a .ui-btn:focus, 
+html .ui-body-a .ui-btn:focus, 
+html body .ui-group-theme-a .ui-btn:focus, 
+html head + body .ui-btn.ui-btn-a:focus, 
+.ui-page-theme-a .ui-focus, 
+html .ui-bar-a .ui-focus, 
+html .ui-body-a .ui-focus, 
+html body .ui-group-theme-a .ui-focus, 
+html head + body .ui-btn-a.ui-focus, 
+html head + body .ui-body-a.ui-focus {box-shadow:none !important; text-shadow:none !important;}
+
+/*********************** Form Style ***********************/
+/* 인풋 텍스트 */
+.ui-input-text.ui-body-z {border:0 none;}
+.ui-input-text.ui-body-z input[type="text"],
+.ui-input-text.ui-body-z input[type="password"] {padding:0.45em; border:0 none; font-weight:0; font-size:13px; color:#999; background-color:#f1efeb;}
+.ui-input-text.ui-body-z input[readonly=""] {background-color:#fff !important;}
+.ui-input-text.ui-body-z .ui-shadow-inset, .ui-focus {box-shadow:none !important;}
+
+/* 폼 필드 컨테인 theme-a */
+fieldset.ui-group-theme-a,
+fieldset.ui-group-theme-b {display:block; margin:0;}
+fieldset.ui-group-theme-a .ui-field-contain, 
+fieldset.ui-group-theme-a .ui-radio,
+fieldset.ui-group-theme-a .ui-checkbox {overflow:hidden; margin:0 !important; padding:0.7em 0; border-bottom:1px solid #ccc !important; background-color:#fff;}
+fieldset.ui-group-theme-a .ui-field-contain > label {float:left; width:23%; margin:0.45em 0 0.45em 3%; font-size:14px; color:#000;}
+fieldset.ui-group-theme-a .innerbtnset {position:relative; margin:0 3% 10px 30%;}
+fieldset.ui-group-theme-a .innerbtnset:last-child {margin-bottom:0;}
+fieldset.ui-group-theme-a .innerbtnset .ui-input-text {width:60%; margin:0;}
+fieldset.ui-group-theme-a .innerbtnset .ui-btn {position:absolute; top:3%; right:0; width:32%; border-radius:0.3125em !important; font-weight:normal;}
+fieldset.ui-group-theme-a label ~ [class*="ui-"] {float:none !important; width:67%; margin-left:30%;}
+
+/* 폼 필드 컨테인 theme-b (일부 스타일은 a와 동시사용) */
+fieldset.ui-group-theme-b .ui-field-contain {margin:0 !important; padding:0.8em 0 !important;}
+
+/* 폼 필드 컨테인 버튼감싸기 */
+fieldset.btnwrap {display:block !important; padding:0.5em 3% 0.5em;}
+fieldset.btnwrap div[class*="ui-"] {margin-top:0 !important;}
+/*.btnwrap.btmpos {position:absolute; display:block !important; padding:0.75em 3%; width:94%; bottom:0; left:0;}*/
+
+/* 폼 필드 컨테인 버튼과 인풋텍스트 동시 사용 */
+fieldset .btncombine {overflow:hidden;}
+fieldset .btncombine > div {float:left; width:40%; margin-left:3% !important;}
+fieldset .btncombine > div[class*="ui-grid-"] {width:54%; margin-left:0 !important;} 
+fieldset .btncombine > div[class*="ui-grid-"] > div {width:47%; margin-left:3%;}
+fieldset .btncombine > div > label {padding-left:18% !important;}
+fieldset .btncombine > div > label.ui-btn-r:after, 
+fieldset .btncombine > div > input {left:0 !important;}
+fieldset .btncombine *[data-role="button"] {border-radius:0.3125em !important;}
+
+/* 라디오 버튼 */
+label.ui-btn-r {padding:0 0 0 14% !important; height:29px !important; border:0 none !important; line-height:29px !important; font-size:14px !important; color:#000 !important; background-color:transparent !important; font-weight:normal; text-shadow:0 1px 0 rgba(0,0,0,0.3) !important;}
+label.ui-btn-r:hover {background-color:#fff;}
+label.ui-btn-r:after {left:5%;}
+.ui-checkbox input, 
+.ui-radio input {left:5% !important; height:16px !important; width:16px !important; margin:-7px 2px !important;}
+fieldset.ui-group-theme-a label.ui-btn-r.ui-radio-off:after {opacity:1 !important; width:10px; height:10px; border:4px solid #fff; border-radius:1em; background-color:#fff; box-shadow:0 0 0 1px #ccc;}
+fieldset.ui-group-theme-a label.ui-btn-r.ui-radio-on:after {opacity:1 !important; width:10px; height:10px; border:4px solid #fff; border-radius:1em; background-color:#e32213; box-shadow:0 0 0 1px #ccc;}
+
+/* 체크박스*/
+label.ui-btn-r.ui-checkbox-off:after {opacity:1 !important; width:16px !important; height:16px !important; border:1px solid #ccc !important; border-radius:0.325em !important; background-color:#fff !important;}
+label.ui-btn-r.ui-checkbox-on:after {opacity:1 !important; width:16px !important; height:16px !important; border:1px solid #ccc !important; border-radius:0.325em !important; background:url('/images/checkbox.png') no-repeat 50% 50% #fff !important; background-size:65% auto !important;}
+
+/*********************** Popup Style ***********************/
+.ui-popup.ui-body-z {background-color:#fff;}
+.ui-popup.ui-body-z .ui-header.ui-bar-z {border:none; background:none; margin-bottom:-1em; border-bottom:1px solid #ccc;}
+.ui-popup.ui-body-z .ui-header.ui-bar-z .ui-title {color:#000;}
+.ui-popup.ui-body-z .ui-header.ui-bar-y {border:none; margin-bottom:-1em; background-image:none; color:#000; background-color:#f1efeb; border-bottom:1px solid #ccc;}
+.ui-popup.ui-body-z .ui-header.ui-bar-y .ui-title {margin:0 20%;}
+.ui-popup.ui-body-z .ui-content {text-align:center; padding:2em 1.4em 1.1em; min-width:220px;}
+.ui-popup-container .ui-content > p, 
+.ui-popup-container .ui-content > h1, 
+.ui-popup-container .ui-content > h2, 
+.ui-popup-container .ui-content > h3, 
+.ui-popup-container .ui-content > h4, 
+.ui-popup-container .ui-content > h5, 
+.ui-popup-container .ui-content > h6 {margin:1em 0;}
+.ui-popup-container .ui-content *[data-role="button"] {min-width:38%;}
+
+.ui-popup.ui-body-z .ui-content.type2 {padding-left:0 !important; padding-right:0 !important;}

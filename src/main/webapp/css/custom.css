@@ -1,0 +1,214 @@
+@charset "utf-8";
+
+/********************** index 페이지 ***************************/
+.indexwrap {padding:2% 2% 2%;}
+.mainvisual {width:100%;}
+.b_banner a {display:block; border:2px solid #9a999a;}
+.b_banner a img {width:100%;}
+.idx_cont {}
+.idx_cont > div {overflow:hidden;}
+.t_quick, .m_quick {margin:0 0 2% 0;}
+.t_quick .lft {float:left; width:49%;}
+.t_quick .rgt {margin:0 0 0 51%;}
+.idx_cont img {width:100%;}
+.m_quick .lft {float:left; width:49%;}
+.m_quick .rgt {margin:0 0 0 51%;}
+.m_quick .rgt .tp {margin:0 0 2.6% 0;}
+.ui-popup-screen {position:fixed;}
+
+/********************** 앱 다운로드 ***************************/
+.appdown {padding:0.5em;}
+.appdown li {border:1px solid #ccc; margin:0 0 0.5em 0;}
+.appdown li a {position:relative; display:block; padding:3em 0 3em 45%; background-color:#fff;}
+.appdown li:first-child a:before {content:''; position:absolute; top:50%; left:30%; display:block; width:30px; height:34px; margin:-17px 0 0 0; background:url('/images/app.png') no-repeat 0 0; background-size:100% auto;}
+.appdown li:last-child a:before {content:''; position:absolute; top:50%; left:30%; display:block; width:30px; height:34px; margin:-17px 0 0 0; background:url('/images/app.png') no-repeat 0 100%; background-size:100% auto;}
+
+/********************** 지역선택 - 극장선택 ***************************/
+.theater_list {overflow:hidden; background-color:#ddd;}
+.theater_list a {border-top:1px solid #aaa;}
+.theater_list:first-child a {border-top:0 none;}
+.theater_list h3,
+.theater_list p {padding:0 16px;}
+.theater_list h3 {font-weight:normal !important; color:#000 !important; font-size:1em;}
+.theater_list p {font-size:0.75em !important; color:#4d4d4d !important;}
+
+/********************** 상영시간표 메인 ***************************/
+.timetable_header {overflow:hidden; background-color:#fff;}
+.timetable_header a {position:relative; display:block; padding:0.7em 1em; text-align:center;}
+.timetable_header strong {display:inline-block; color:#000; margin:0 auto;}
+.timetable_header em {position:absolute; left:1em; color:#000;}
+.timetable_header a:before,
+.timetable_header a:after {content:''; position:absolute; display:block; background-color:#ccc; transform:rotate(45deg); -webkit-transform:rotate(45deg); -moz-transform:rotate(45deg); -ms-transform:rotate(45deg);}
+.timetable_header a:before {top:1em; right:1em; width:3px; height:14px; margin:2px 0 0 0;}
+.timetable_header a:after {top:1em; right:1em; width:14px; height:3px; margin:0 -5px 0 0;}
+
+.timetable_movie {position:relative; padding:0.4em 1em; border-bottom:1px solid #ccc;}
+.timetable_movie .icon {position:absolute; top:7px; left:1em; display:block; width:20px; height:20px; border-radius:1em; text-align:center; font-size:12px; line-height:20px; color:#fff;}
+.timetable_movie .icon.l_001 {background-color:#ff7c9b;}
+.timetable_movie .icon.l_002 {background-color:#0f70dd;}
+.timetable_movie .icon.l_003 {background-color:#f6dc02;}
+.timetable_movie .icon.l_004 {background-color:#662d91;}
+.timetable_movie .icon.l_005 {background-color:#39b54a;}
+.timetable_movie .icon.l_006 {background-color:#027d72;}
+.timetable_movie .icon.l_007 {background-color:#ce2c8c;}
+.timetable_movie .icon.l_008 {background-color:#002157;}
+.timetable_movie .icon.l_009 {background-color:#e50020;}
+.timetable_movie .icon.l_010 {background-color:#eb510e;}
+.timetable_movie .icon.l_011 {background-color:#7cc576;}
+.timetable_movie h3 {padding-left:2em; color:#000;}
+.timetable_movie p {padding-top:0.2em; text-align:right; font-size:0.75em;}
+.timetable_movie .category {position:absolute; top:7px; right:1.3em; display:block; padding:0.2em 0.5em; border-radius:0.2em; background-color:#0054a6; font-size:12px; color:#fff; font-weight:700;}
+
+.timetable_body .ui-grid-c {border-bottom:1px solid #ccc; background-color:#dddddd;}
+.timetable_body .ui-grid-c .ui-link {display:block; padding:0; margin:0; border:0 none; border-left:1px solid #ccc; font-weight:normal; text-align:center; background-color:#fff;}
+.timetable_body .ui-grid-c:first-child .ui-link {border-left:none;}
+.timetable_body .ui-grid-c strong {display:block; padding:0.45em 0; font-size:0.875em; color:#000;}
+.timetable_body .ui-grid-c .red {display:block; font-size:0.625em;}
+.timetable_body .ui-grid-c .default {display:block; padding-bottom:0.45em; font-size:0.625em; color:#999;}
+.timetable_body .ui-grid-c .default del {font-size:1em; text-decoration:line-through;}
+
+.noscheduled {padding:7em 0; text-align:center; color:#000; font-size:0.833em;}
+
+/********************** 좌석선택 ***************************/
+.seat_choice .moviedetail {overflow:hidden; padding:0.5em; border-bottom:1px solid #ccc; background-color:#fff;}
+.seat_choice .moviedetail dt {float:left; margin:0 0 0 3%; width:37%; line-height:1.5; font-size:0.75em;}
+.seat_choice .moviedetail dd {margin:0 3% 0 40%; color:#000; line-height:1.5; font-size:0.75em;}
+
+.seatgrid_wrap {overflow:scroll; background-color:#b7b6b3;}
+.seatgrid {position:relative; margin:0 auto; background-color:#b7b6b3;}
+.seatgrid .subject {margin:0 0 0 26px; padding:10px 20px 10px 0; text-align:center; text-decoration:underline; background-color:#f1efeb;}
+.seatgrid .legend {margin:0 0 0 26px; padding:0 20px 2em 0; text-align:center; background-color:#f1efeb;}
+.seatgrid .legend li {display:inline-block; font-size:0.75em; margin:0 0.5em;}
+.seatgrid .legend li.able:before {content:''; display:inline-block; width:10px; height:10px; margin:0 0.2em 0 0; background-color:#bbb; vertical-align:middle;}
+.seatgrid .legend li.choice:before {content:''; display:inline-block; width:10px; height:10px; margin:0 0.2em 0 0; background-color:#e32213; vertical-align:middle;}
+.seatgrid .legend li.disable:before {content:''; display:inline-block; width:10px; height:10px; margin:0 0.2em 0 0; background-color:#666; vertical-align:middle;}
+
+.seatgrid .btn_zoom {position:absolute; top:1em; right:1em; display:block; width:30px; height:30px; border:0 none; color:#f1efeb; background:none transparent; box-shadow:none; border-radius:none; margin:0;}
+.seatgrid .btn_zoom:after {content:''; position:absolute; top:0; left:0; display:block; width:30px; height:30px; background:url('/images/zoom.png') no-repeat 0 0 #f1efeb; background-size:100% auto; z-index:1;}
+.seatgrid .btn_zoom.zoomin:after {background-position:0 0;}
+.seatgrid .btn_zoom.zoomout:after {background-position:0 100%;}
+
+.ui-group-theme-f {margin:0; background-color:#f1efeb; border-radius:0 !important;}
+.ui-group-theme-f .number_row {float:left; width:26px ! important; text-align:center; color:#fff; font-size:0.75em; line-height:24px; background-color:#b7b6b3;}
+.ui-group-theme-f .number_col {float:left; width:26px; height:26px; margin:0 0 0;text-align:center; color:#fff; font-size:0.75em; line-height:24px; background-color:#b7b6b3;}
+.ui-group-theme-f .ui-controlgroup-controls {width:100%;}
+.ui-group-theme-f .ui-checkbox {width:26px;margin:0px;}
+.ui-group-theme-f .ui-checkbox .ui-corner-all{width:auto;margin:0 3px;text-indent:-999999px;}
+
+.ui-group-theme-f label {text-indent:-9999em; border:0 none; width:20px; height:20px; padding:0; background-color:#bbb;}
+.ui-group-theme-f input[type="checkbox"] {margin-left:1px;opacity:0 !important;}
+.ui-group-theme-f label.ui-checkbox-on {background-color:#e32213 !important;}
+.ui-group-theme-f .ui-state-disabled {opacity:1 !important;}
+.ui-group-theme-f .ui-state-disabled label {background-color:#666 !important; opacity:1;}
+
+/********************** 상영 영화 / 개봉 예정 영화 ***************************/
+.movielist_type1 {padding:0.5em; text-align:center;}
+.movielist_type1 {overflow:hidden; display:block; height:auto;}
+.movielist_type1 span {display:block; width:85px; height:110px; margin:0 auto 0.3em;}
+.movielist_type1 img {width:100%; height:100%;}
+.movielist_type1 figcaption {font-size:0.750em; color:#000;}
+.movielist_type1 figcaption > em {display:block; font-size:0.750em; color:#e32213;}
+.movielist_type1 figcaption > em.gray {color:#999;}
+.movielist_type1 figcaption > p {font-size:1.000em;text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+
+/********************** 영화정보 ***************************/
+.moviesummary {overflow:hidden; border-bottom:1px solid #ccc;}
+.moviesummary .poster {float:left; width:33%; max-width:140px;}
+.moviesummary .poster img {width:100%; height:auto;}
+.moviesummary .summary {float:left; width:65%; margin:0 0 0 2%;}
+.moviesummary .summary > h3 {font-size:1em; color:#000; padding:0.5em;}
+.moviesummary .summary > dl {padding:0 0.5em;}
+.moviesummary .summary dt {float:left; width:40%; font-size:0.813em; line-height:1.4;}
+.moviesummary .summary dt.gray {color:#999;}
+.moviesummary .summary dd {margin-left:42%; font-size:0.813em; line-height:1.4; color:#000}
+.moviesummary .summary > div {margin:0 0 0 2%;}
+
+.moviecontents .ui-navbar {padding:0.5em;}
+.moviecontents .ui-navbar li a {padding:0.7em 0 !important; border:2px solid #848484 !important; background-color:#fff !important;}
+.moviecontents .ui-navbar li:first-child a {border-right:0 none !important; border-radius:0.325em 0 0 0.325em !important;}
+.moviecontents .ui-navbar li:last-child a {border-radius:0 0.325em 0.325em 0 !important;}
+.moviecontents .ui-navbar li.ui-tabs-active a {padding:0.7em 0 !important; background-color:#848484 !important;}
+.moviecontents .ui-navbar li a:before {display:none !important;}
+
+.movieplot {overflow:hidden; padding:0.5em 1em; border-bottom:1px solid #ccc;}
+.movieplot p {overflow:hidden; line-height:1.5; font-size:0.813em; color:#666;}
+.movieplot a {float:right; margin-top:0.25em; font-size:0.813em;}
+.movieplot a:after {content:''; display:inline-block; width:0; height:0; border-style:solid; border-width:5px; border-color:#e32213 transparent transparent transparent; vertical-align:text-bottom;}
+.movieplot a.flip:after {border-color:transparent transparent #e32213 transparent; vertical-align:text-top;}
+
+.di_title {padding:0.7em; font-size:0.925em; font-weight:bold; color:#e32213;}
+
+.moviecast li {min-height:96px !important; background-color:#fff;}
+.moviecast img {padding:0.5em; height:auto !important; max-height:auto !important;}
+.moviecast h2 {font-size:0.938em !important; margin-top:0 !important; color:#000;}
+.moviecast h2 span {display:block; font-size:0.75em; color:#999; color:#333;}
+.moviecast p {font-size:0.75em !important; margin-bottom:0 !important; white-space:normal !important; margin-right:-2em !important;}
+.moviecast em.red {font-size:1em;}
+.moviecast del {font-size:1em; text-decoration:line-through;}
+
+.moviecast.arrow li:before,
+.moviecast.arrow li:after {content:''; position:absolute; display:block; background-color:#ccc; transform:rotate(45deg); -webkit-transform:rotate(45deg); -moz-transform:rotate(45deg); -ms-transform:rotate(45deg); z-index:10;}
+.moviecast.arrow li:before {top:50%; right:1em; width:3px; height:14px; margin:-1px 0 0 0;}
+.moviecast.arrow li:after {top:50%; right:1em; width:14px; height:3px; margin:-3px -6px 0 0;}
+
+.moviemedia div.ui-grid-b {padding:0.25em;}
+.moviemedia div.ui-grid-b:first-child {padding-bottom:0;}
+.moviemedia div[class*="ui-block-"] {padding:0.25em;}
+.moviemedia div[class*="ui-block-"] img {width:100%;}
+.moviemedia .movie_trailer {position:relative; display:block;}
+.moviemedia .movie_trailer > span {position:absolute; top:0; left:0; width:100%;}
+.moviemedia .movie_trailer > span > img {width:100%;}
+
+/********************** 로그인 ***************************/
+.customtext1 {padding-top:2em; text-align:center; color:#999; font-size:0.875em;}
+.customtext1 a {margin-top:1.5em;}
+
+/********************** 발권완료 ***************************/
+.ticketed ._movie {position:relative; padding:0.7em 1em; border-bottom:1px solid #ccc; background-color:#fff;}
+.ticketed ._movie h3 {margin:0 3em; padding:0 0 0.7em 0; border-bottom:1px solid #ccc; text-align:center; font-weight:bold; color:#000;}
+.ticketed ._movie p {padding:0.7em 0; font-size:0.813em; color:#666; text-align:center;}
+.ticketed ._movie div {position:absolute; top:0; right:0.7em;}
+
+.ticketed ._history dl {overflow:hidden; padding:0.7em 1em; border-bottom:1px solid #ccc;}
+.ticketed ._history dt,
+.ticketed ._history dd {float:left; width:50%; font-size:0.813em; line-height:1.5;}
+.ticketed ._history dt {color:#666;}
+.ticketed ._history dd {text-align:right; color:#000;}
+.ticketed ._history dd.em {font-size:1em; color:#e32213; line-height:1.25em; font-weight:bold;}
+
+.ticketed ._seat p {padding:1.5em 1em; border-bottom:1px solid #ccc; text-align:center; background-color:#fff;}
+.ticketed ._seat em {font-weight:bold;}
+
+._notify {}
+._notify h4 {padding:0.7em 0.7em 0; text-align:center; color:#000; font-weight:bold;}
+._notify p {text-align:center; padding:1.2em 3em; font-size:0.813em;}
+._notify p:nth-child(odd) {border-top:1px solid #ccc; border-bottom:1px solid #ccc; color:#fff; background-color:#7d7c7a;}
+
+/********************** CGV 카드 결제 ***************************/
+.CGVpayment {overflow:hidden; margin-bottom:1em; border-bottom:1px solid #ccc; background-color:#fff;}
+.CGVpayment dt {float:left; width:30%; height:28px; padding:0.5em 0 0.5em 3%; border-top:1px solid #ccc; line-height:28px; font-size:0.813em; color:#000;}
+.CGVpayment dd {float:left; width:64%; padding-right:3%; border-top:1px solid #ccc;}
+div.remembercard > div.ui-checkbox {padding:0.5em 0 0 !important; border-bottom:0 none !important;}
+div.remembercard > div.ui-checkbox input[type="checkbox"] {margin-top:-4px !important;}
+div.remembercard > div.ui-checkbox label {color:#e32213 !important; text-shadow:none;}
+
+
+/********************** 주문정보입력 ***************************/
+.ordering {overflow:hidden; padding:0.5em; border-bottom:1px solid #ccc; background-color:#fff;}
+.ordering dt {float:left; width:30%; height:1em; padding:0.3em 0 0.3em 3%; font-size:0.813em; color:#666;}
+.ordering dd {padding:0.3em 3% 0.3em 0; margin:0 0 0 33%; font-size:0.813em; color:#000 !important;}
+.customtext2 {padding:1em; text-align:center; font-size:0.813em;}
+.customtext3 {margin:0.3em 0 0 30%; font-size:0.813em; color:#000;}
+.ticketed ._notify h4 {padding:0.7em 0.7em 0; text-align:center; color:#000; font-weight:bold;}
+.ticketed ._notify p {text-align:center; padding:1.2em 3em; font-size:0.813em;}
+
+/********************** 나의 CGV ***************************/
+.myCGVintro .ui-group-theme-b > li {margin-bottom:1em;}
+.myCGVintro .ui-group-theme-b > li:last-child {border-top:1px solid #ccc;} 
+.myCGVintro .ui-group-theme-b > li a {padding:1.3em 0.7em; font-size:0.813em; text-align:right; text-shadow:none; color:#666;}
+.myCGVintro .ui-group-theme-b > li a strong {float:left; font-size:1em; color:#000;}
+.myCGVintro .ui-group-theme-b > li a:hover {text-shadow:none;}
+.myCGVintro .btnwrap {padding:1em;}
+
+/********************** 지역선택 - 극장선택 ***************************/
+
