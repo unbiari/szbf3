@@ -380,7 +380,7 @@ function timer(){
 	    var second_show = document.getElementById("second_show");
 	    second_show.innerHTML = '<s></s>'+second+'秒';
 	    intDiff--;
-    }, 1000);
+    }, 1000); // 1sec
 }
 </script>
 
