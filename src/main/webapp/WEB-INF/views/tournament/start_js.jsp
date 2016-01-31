@@ -307,10 +307,12 @@ var Send_game_action = function( cmd, index_from, index_to ) { // called from sz
 }
 
 var my_turn_start = function(master_flag) {
+	Next_Btn.style.visibility = "hidden";
 	My_turn_init(master_flag);
 }
 
 var your_turn_start = function(master_flag) {
+	Next_Btn.style.visibility = "visible";
 	now_temp_count = 1;
 	now_temp_count *= 1;
 	check_game_action(master_flag); // client.do?check_game_action&country=JPN&mobilePhone=5678
@@ -380,7 +382,7 @@ function timer(){
 	    var second_show = document.getElementById("second_show");
 	    second_show.innerHTML = '<s></s>'+second+'秒';
 	    intDiff--;
-    }, 1000); // 1sec
+    }, 1000); // 1sec every
 }
 </script>
 

@@ -142,7 +142,7 @@ public class TournamentController {
 		}
 		
 		// Tournament 초기 호출
-		if(end_win_count == 1) {
+		if(end_win_count == 1) { // 1:1 game
 			synchronized(Now_tournament_1) {
 				if(Now_tournament_1.getTouramentStatus() == Constant.TournamentStatus.STATUS_TOURNAMENT_NONE) {
 					Now_tournament_1.Initialize(seq_num, 0, end_win_count); // room 이 자동 생성됨
@@ -498,7 +498,7 @@ public class TournamentController {
 	}
 
 	// 게임에서 action 을 한 사람에게만 호출됨
-	private String parse_action( Boolean master_flag, String action, Room room, JSONObject j_object ) {
+	private String parse_action( Boolean master_flag, String action, GameUser user, Room room, JSONObject j_object ) {
 		logger.info("parse_action:master_flag="+master_flag+",action="+action);
 		
 		int from, to, from_master, to_master;
@@ -568,6 +568,9 @@ public class TournamentController {
 			if( is_win( room_pan[from_master], room_pan[to_master] ) ) {
 				if( Math.abs(room_pan[to_master]) == Constant.MalType.MAL_KING ) {
 					room.setRoomStatus(RoomStatus.STATUS_ROOM_GAME_ENDED);
+					user.setGameUserStatus(GameUserStatus.STATUS_USER_NONE);
+					user.setRoomKey(null);
+					user.setTournamentKey(null);
 					
 					if( master_flag )
 						ret_str = "MW"; // master win
@@ -584,6 +587,9 @@ public class TournamentController {
 			else {
 				if( Math.abs(room_pan[from_master]) == Constant.MalType.MAL_KING ) {
 					room.setRoomStatus(RoomStatus.STATUS_ROOM_GAME_ENDED);
+					user.setGameUserStatus(GameUserStatus.STATUS_USER_NONE);
+					user.setRoomKey(null);
+					user.setTournamentKey(null);
 					
 					if( master_flag )
 						ret_str = "ML"; // master loss
@@ -666,88 +672,6 @@ public class TournamentController {
 		
 		return ret_str;
 	}
-
-	// used by send_game_action, check_game_action
-	private boolean valid_user_room_status(String seq_num, String turn_count_str, HttpServletRequest request, JSONObject j_object, RoomStatus room_status) {
-		Boolean ret_boolean = false;
-		
-		//response.setContentType("text/html;charset=UTF-8");	
-		if( (PreventInjection.ValidSeqNum(seq_num) == false) || PreventInjection.ValidTurnCount(turn_count_str) == false ) {
-			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
-			j_object.put(ConstantStr.STR_MSG, "check action error");
-			
-			return ret_boolean; // exit
-		}
-
-		// User
-        HttpSession session  =  request.getSession(false);		
-		GameUser user = gameUserMap.get(seq_num);
-		
-		if( user == null || user.getSessionId() != session.getId() || user.getGameUserStatus() != GameUserStatus.STATUS_TOURNAMENT_JOINED ) {
-			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
-			j_object.put(ConstantStr.STR_MSG, "game user error");
-			
-			return ret_boolean; // exit
-		}
-		
-		user.setUpdatedTime(System.currentTimeMillis()); // 사용자 접속 최근 시간 수정
-
-		// Room
-		if( user.getTournamentKey() == null || user.getRoomKey() == null ) {
-			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
-			j_object.put(ConstantStr.STR_MSG, "game user error");
-			
-			return ret_boolean; // exit
-		}
-
-		Room room = roomMap.get(user.getRoomKey());
-		if(room == null) {
-			j_object.put(ConstantStr.STR_RT, "2"); // 1 보다 크면 오류...
-			j_object.put(ConstantStr.STR_MSG, "get room error");
-			
-			return ret_boolean; // exit
-		}
-		room.setUpdatedTime(System.currentTimeMillis()); // time setting
-		
-		// 
-		if( room.getRoomStatus() != room_status ) {
-			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
-			j_object.put(ConstantStr.STR_MSG, "now room not created");
-			
-			return ret_boolean; // exit
-		}
-
-		// check now turn count
-		int turn_count = Integer.parseInt(turn_count_str);
-		
-		if( (room.getNowTurnCount() != (turn_count-1)) && (room.getNowTurnCount() != turn_count)  ) {
-			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
-			j_object.put(ConstantStr.STR_MSG, "turn count error");
-			
-			return ret_boolean; // exit
-		}
-		
-		// valid check client turn count : odd/even
-		/*
-		if( master_flag && ((turn_count % 2) != 0 ) ) { // only master turn
-			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
-			j_object.put(ConstantStr.STR_MSG, "master turn error");
-			
-			response.getWriter().write(j_object.toString());
-			return; // exit
-		}
-		else if( !master_flag && ((turn_count % 2) == 0 ) ) { // only slave turn
-			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
-			j_object.put(ConstantStr.STR_MSG, "slave turn error");
-			
-			response.getWriter().write(j_object.toString());
-			return; // exit
-		}
-		*/
-
-		ret_boolean = true;
-		return ret_boolean;
-	}
 	
 	// only action person call
 	@RequestMapping(params = "send_game_action") // called by AJAX
@@ -761,38 +685,89 @@ public class TournamentController {
 		
 		JSONObject j_object = new JSONObject();
 		
-		if(valid_user_room_status(seq_num, turn_count_str, request, j_object, RoomStatus.STATUS_ROOM_GAME_ING ) == false) {
+		// 기본 check start
+		if( (PreventInjection.ValidSeqNum(seq_num) == false) || PreventInjection.ValidTurnCount(turn_count_str) == false ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "check action error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+
+		// User
+        HttpSession session  =  request.getSession(false);		
+		GameUser user = gameUserMap.get(seq_num);
+		
+		if( user == null || user.getSessionId() != session.getId() || user.getGameUserStatus() != GameUserStatus.STATUS_TOURNAMENT_JOINED ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "game user error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+		
+		user.setUpdatedTime(System.currentTimeMillis()); // 사용자 접속 최근 시간 수정
+
+		// Room
+		if( user.getTournamentKey() == null || user.getRoomKey() == null ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "game user error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+
+		Room room = roomMap.get(user.getRoomKey());
+		if(room == null) {
+			j_object.put(ConstantStr.STR_RT, "2"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "get room error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+		room.setUpdatedTime(System.currentTimeMillis()); // time setting
+		
+		// check room status
+		if( room.getRoomStatus() != RoomStatus.STATUS_ROOM_GAME_ING ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "now room not created");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+
+		// check now turn count
+		int turn_count = Integer.parseInt(turn_count_str);
+		
+		if( (room.getNowTurnCount() != (turn_count-1)) && (room.getNowTurnCount() != turn_count)  ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "turn count error");
+			
 			response.getWriter().write(j_object.toString());
 			return; // exit
 		}
 				
-		// init...
-		GameUser user = gameUserMap.get(seq_num);
-		Room room = roomMap.get(user.getRoomKey());
-		
 		// check master or slave
 		if( room.getSeqNumMaster().equals(seq_num) ) // master
 			master_flag = true;
 		else // slave
 			master_flag = false;
 		
-		/*
 		// valid check client turn count : odd/even
-		if( master_flag && ((atomRoom.memoryRoom.now_turn_count % 2) != 0 ) ) { // only master turn
+		if( master_flag && ((room.getNowTurnCount() % 2) != 0 ) ) { // only master turn
 			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
 			j_object.put(ConstantStr.STR_MSG, "my turn error");
 			
 			response.getWriter().write(j_object.toString());
 			return; // exit
 		}
-		else if( !master_flag && ((atomRoom.memoryRoom.now_turn_count % 2) == 0 ) ) { // only slave turn
+		else if( !master_flag && ((room.getNowTurnCount() % 2) == 0 ) ) { // only slave turn
 			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
 			j_object.put(ConstantStr.STR_MSG, "my turn error");
 			
 			response.getWriter().write(j_object.toString());
 			return; // exit
 		}
-		*/
 		
 		// valid check client turn count
 		if( (room.getNowTurnCount()+1) != Integer.parseInt(action.substring(1, 4)) ) {
@@ -803,7 +778,8 @@ public class TournamentController {
 			return; // exit
 		}
 		
-		ret_action = parse_action( master_flag, action, room, j_object ); // history 는 저장되고 증가됨
+		// main start
+		ret_action = parse_action( master_flag, action, user, room, j_object ); // history 는 저장되고 증가됨
 		if( ret_action == null ) {
 			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
 			j_object.put(ConstantStr.STR_MSG, "error parse_action");
@@ -947,25 +923,99 @@ public class TournamentController {
 		
 		JSONObject j_object = new JSONObject();
 		
-		if(valid_user_room_status(seq_num, turn_count_str, request, j_object, RoomStatus.STATUS_ROOM_GAME_ING ) == false) {
-			if(valid_user_room_status(seq_num, turn_count_str, request, j_object, RoomStatus.STATUS_ROOM_GAME_ENDED ) == false) {
-				response.getWriter().write(j_object.toString());
-				return; // exit
-			}
+		// 기본 check start
+		if( (PreventInjection.ValidSeqNum(seq_num) == false) || PreventInjection.ValidTurnCount(turn_count_str) == false ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "check action error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+
+		// User
+        HttpSession session  =  request.getSession(false);		
+		GameUser user = gameUserMap.get(seq_num);
+		
+		if( user == null || user.getSessionId() != session.getId() || user.getGameUserStatus() != GameUserStatus.STATUS_TOURNAMENT_JOINED ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "game user error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+		
+		user.setUpdatedTime(System.currentTimeMillis()); // 사용자 접속 최근 시간 수정
+
+		// Room
+		if( user.getTournamentKey() == null || user.getRoomKey() == null ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "game user error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+
+		Room room = roomMap.get(user.getRoomKey());
+		if(room == null) {
+			j_object.put(ConstantStr.STR_RT, "2"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "get room error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+		room.setUpdatedTime(System.currentTimeMillis()); // time setting
+		
+		// 
+		if( (room.getRoomStatus() != RoomStatus.STATUS_ROOM_GAME_ING) && (room.getRoomStatus() != RoomStatus.STATUS_ROOM_GAME_ENDED) ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "now room not created");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+
+		// check now turn count
+		turn_count = Integer.parseInt(turn_count_str);
+		
+		if( (room.getNowTurnCount() != (turn_count-1)) && (room.getNowTurnCount() != turn_count)  ) {
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "turn count error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
 		}
 				
-		// init...
-		GameUser user = gameUserMap.get(seq_num);
-		Room room = roomMap.get(user.getRoomKey());
-		turn_count = Integer.parseInt( turn_count_str );
-		
 		// check master or slave
 		if( room.getSeqNumMaster().equals(seq_num) ) // master
 			master_flag = true;
 		else // slave
 			master_flag = false;
 
-		// ret_action = check_last_action( master_flag, atomRoom.memoryRoom );
+		// valid check client turn count : odd/even
+		/* 초기 호출시 문제 발생하여 코멘트 함
+		if( master_flag && ((room.getNowTurnCount() % 2) == 0 ) ) { // only master turn
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "my turn error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+		else if( !master_flag && ((room.getNowTurnCount() % 2) != 0 ) ) { // only slave turn
+			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...
+			j_object.put(ConstantStr.STR_MSG, "my turn error");
+			
+			response.getWriter().write(j_object.toString());
+			return; // exit
+		}
+		*/
+		
+		// main start
+		if ( room.getRoomStatus() == RoomStatus.STATUS_ROOM_GAME_ENDED ) {
+			user.setGameUserStatus(GameUserStatus.STATUS_USER_NONE);
+			user.setRoomKey(null);
+			user.setTournamentKey(null);
+		}
+		
 		ret_action = turn_count_action( master_flag, turn_count, room, j_object ); // 대기 상태에서 호출
 		if( ret_action == null ) {
 			j_object.put(ConstantStr.STR_RT, "1"); // 1 보다 크면 오류...

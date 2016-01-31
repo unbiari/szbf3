@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 
@@ -26,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kidmobile.csr.global.Constant;
 import com.kidmobile.csr.global.ConstantCountry;
 import com.kidmobile.csr.global.ConstantStr;
+import com.kidmobile.csr.global.GameUser;
+import com.kidmobile.csr.tournament.TournamentController;
 import com.kidmobile.csr.user_tbl.User_Tbl;
 import com.kidmobile.csr.user_tbl.User_TblService;
 import com.kidmobile.csr.util.ChangeLocaleController;
@@ -227,8 +230,12 @@ public class LoginController {
 		logger.info(ConstantStr.This_func_called_str);
 		
 		String seq_num = request.getParameter("seqNum");
+
+		if( PreventInjection.ValidSeqNum(seq_num) == false )
+			model.addAttribute( ConstantStr.STR_SEQ_NUM, "0" ); // error
+		else
+			model.addAttribute( ConstantStr.STR_SEQ_NUM, seq_num );
 		
-		model.addAttribute( "seqNum", seq_num );
 		return "client/main_js";
 	}
 

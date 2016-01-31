@@ -45,7 +45,7 @@ public final class RequestWrapper extends HttpServletRequestWrapper {
     }
     
     private String cleanXSS(String value) {
-    	logger.debug("enter cleanXSS, value = " + value);
+    	// logger.debug("enter cleanXSS, value = " + value);
         value = value.replaceAll("<", "& lt;").replaceAll(">", "& gt;");
         value = value.replaceAll("\\(", "& #40;").replaceAll("\\)", "& #41;");
         value = value.replaceAll("'", "& #39;");

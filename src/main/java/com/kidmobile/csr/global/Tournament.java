@@ -40,7 +40,7 @@ public class Tournament {
 		this.beginWinCount = beginWinCount;
 		this.endWinCount = endWinCount; // 1, 2, 3
 		this.expiredDateTime = 0L;
-		this.maxUserCount = 2^endWinCount;
+		//this.maxUserCount = 2^endWinCount;
 		this.nowUserCount = 0; // 초기화 때는 0 으로 설정
 		this.touramentStatus = TournamentStatus.STATUS_TOURNAMENT_INITIALIZED;
 		this.startedTime = System.currentTimeMillis();
@@ -49,18 +49,22 @@ public class Tournament {
 		switch(endWinCount) {
 		case 1:
 			nowRoom0 = new Room(); // 첫 게임 시작
+			this.maxUserCount = 2;
 			break;
 		case 2:
 			nowRoom0 = new Room(); // 첫 게임 시작
 			nowRoom1 = new Room(); // 1승후 게임 시작
+			this.maxUserCount = 4;
 			break;
 		case 3:
 			nowRoom0 = new Room(); // 첫 게임 시작
 			nowRoom1 = new Room(); // 1승후 게임 시작
 			nowRoom2 = new Room(); // 2연승후 게임 시
+			this.maxUserCount = 8;
 			break;
 		default: // case x : 소규모 게임 대회 - 시간별로 설정
 			nowRoomx = new Room(); // 첫 게임 시작
+			this.maxUserCount = 100000;
 			break;
 		}
 	}
